@@ -164,6 +164,162 @@
 .btn-primary:disabled { opacity:.6; cursor:not-allowed; transform:none; }
 .auth-footer { text-align:center; margin-top:20px; font-size:14px; color:var(--text2); }
 
+/* ── Onboarding ──────────────────────────────────────────────────────────────── */
+.ob-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #04080f;
+  padding: 32px 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.ob-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 860px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+
+.ob-logo { animation: cardIn .5s cubic-bezier(.2,.8,.4,1) both; }
+.ob-logo .noteiq-logo-name { font-size: 28px; }
+
+.ob-hero { text-align: center; animation: cardIn .5s .1s cubic-bezier(.2,.8,.4,1) both; }
+
+.ob-badge {
+  display: inline-block;
+  background: rgba(168,85,247,0.15);
+  border: 1px solid rgba(168,85,247,0.3);
+  color: #c084fc;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 14px;
+  border-radius: 20px;
+  margin-bottom: 18px;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+}
+
+.ob-title {
+  font-size: 42px;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.2;
+  margin-bottom: 16px;
+  letter-spacing: -.5px;
+}
+.ob-title-gradient {
+  background: linear-gradient(135deg, #60a5fa, #a855f7, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.ob-subtitle {
+  font-size: 16px;
+  color: rgba(255,255,255,0.45);
+  line-height: 1.7;
+}
+
+/* Feature cards */
+.ob-features {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  width: 100%;
+}
+
+.ob-card {
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 18px;
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  animation: cardIn .5s cubic-bezier(.2,.8,.4,1) both;
+  transition: transform .2s, border-color .2s, box-shadow .2s;
+  cursor: default;
+}
+.ob-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--card-color, rgba(255,255,255,0.15));
+  box-shadow: 0 12px 32px var(--card-glow, rgba(0,0,0,0.2));
+}
+
+.ob-card-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.ob-card-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.ob-card-desc {
+  font-size: 13px;
+  color: rgba(255,255,255,0.45);
+  line-height: 1.6;
+}
+
+/* CTA */
+.ob-cta { display:flex; flex-direction:column; align-items:center; gap:12px; animation: cardIn .5s .4s cubic-bezier(.2,.8,.4,1) both; }
+
+.ob-start-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 40px;
+  border-radius: 50px;
+  background: linear-gradient(135deg, #1d6ff5, #a855f7);
+  color: #fff;
+  font-size: 17px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 8px 32px rgba(29,111,245,0.4);
+  transition: transform .2s, box-shadow .2s, opacity .2s;
+  letter-spacing: .2px;
+}
+.ob-start-btn:hover { transform:translateY(-2px) scale(1.03); box-shadow:0 14px 40px rgba(168,85,247,0.45); }
+.ob-start-btn:active { transform:translateY(0) scale(1); }
+
+.ob-btn-arrow { display:flex; align-items:center; transition:transform .2s; }
+.ob-start-btn:hover .ob-btn-arrow { transform:translateX(4px); }
+
+.ob-cta-sub { font-size:13px; color:rgba(255,255,255,0.3); }
+
+/* Responsive onboarding */
+@media (max-width:900px) {
+  .ob-features { grid-template-columns:repeat(2,1fr); }
+  .ob-title { font-size:32px; }
+}
+@media (max-width:600px) {
+  .ob-features { grid-template-columns:1fr 1fr; gap:12px; }
+  .ob-title { font-size:26px; }
+  .ob-subtitle { font-size:14px; }
+  .ob-start-btn { padding:14px 32px; font-size:15px; }
+  .ob-card { padding:18px 14px; }
+}
+@media (max-width:400px) {
+  .ob-features { grid-template-columns:1fr; }
+  .ob-title { font-size:22px; }
+}
+
 /* ── Dashboard 3-col layout ─────────────────────────────────────────────────── */
 .db3 { display:grid; grid-template-columns:260px 1fr 320px; height:100vh; overflow:hidden; }
 

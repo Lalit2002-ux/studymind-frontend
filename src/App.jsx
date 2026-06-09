@@ -4,6 +4,7 @@ import { ToastContainer } from "./toast";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
+import Onboarding from "./pages/Onboarding";
 import "./App.css";
 
 function PrivateRoute({ children }) {
@@ -15,7 +16,11 @@ function PrivateRoute({ children }) {
 function PublicRoute({ children }) {
   const { user, loading } = useAuth();
   if (loading) return <div className="center-screen"><div className="spinner" /></div>;
-  return user ? <Navigate to="/dashboard" replace /> : children;
+  if (user) {
+    const onboarded = localStorage.getItem("noteiq_onboarded");
+    return <Navigate to={onboarded ? "/dashboard" : "/welcome"} replace />;
+  }
+  return children;
 }
 
 export default function App() {
@@ -25,8 +30,9 @@ export default function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Navigate to="/login" replace />} />
-          <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
-          <Route path="/register" element={<PublicRoute><Register /></PublicRoute>} />
+          <Route path="/login"     element={<PublicRoute><Login /></PublicRoute>} />
+          <Route path="/register"  element={<PublicRoute><Register /></PublicRoute>} />
+          <Route path="/welcome"   element={<PrivateRoute><Onboarding /></PrivateRoute>} />
           <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
         </Routes>
       </BrowserRouter>
