@@ -1,17 +1,37 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg: #000000;
-  --bg2: #0a0f1a;
-  --bg3: #0f1824;
-  --border: #1a2d45;
-  --accent: #1d6ff5;
-  --accent2: #60a5fa;
-  --accent-glow: rgba(29, 111, 245, 0.22);
-  --text: #ffffff;
-  --text2: #a0b8d0;
-  --danger: #ef4444;
-  --success: #22c55e;
+  /* Deep Midnight — base surfaces */
+  --bg:            #030812;
+  --bg2:           #06101f;
+  --bg3:           #0b1a30;
+  --bg4:           #0f2040;
+
+  /* Borders & glows */
+  --border:        rgba(255,255,255,0.08);
+  --border2:       rgba(255,255,255,0.14);
+
+  /* Brand accents */
+  --accent:        #1d6ff5;
+  --accent2:       #60a5fa;
+  --purple:        #7c3aed;
+  --purple2:       #a78bfa;
+  --cyan:          #0ea5e9;
+  --pink:          #ec4899;
+
+  /* Glow layers */
+  --accent-glow:   rgba(29,111,245,0.18);
+  --purple-glow:   rgba(124,58,237,0.18);
+  --cyan-glow:     rgba(14,165,233,0.15);
+
+  /* Text */
+  --text:          #f0f6ff;
+  --text2:         #7a9bbf;
+
+  /* Status */
+  --danger:        #ef4444;
+  --success:       #22c55e;
+
   --radius: 12px;
   --font: 'Inter', system-ui, sans-serif;
 }
