@@ -15,9 +15,142 @@
 .auth-logo-wrap { justify-content:center; margin-bottom:32px; }
 .auth-logo-wrap .noteiq-logo-name { font-size:24px; }
 
-/* ── Auth ───────────────────────────────────────────────────────────────────── */
-.auth-page { min-height:100vh; display:flex; align-items:center; justify-content:center; background:radial-gradient(ellipse at 50% 0%,rgba(29,111,245,.18) 0%,transparent 60%),var(--bg); padding:24px; }
-.auth-card { background:var(--bg2); border:1px solid var(--border); border-radius:20px; padding:44px 40px; width:100%; max-width:420px; box-shadow:0 24px 64px rgba(0,0,0,.6); }
+/* ── Auth page ───────────────────────────────────────────────────────────────── */
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #04080f;
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Animated background */
+.auth-bg { position:fixed; inset:0; z-index:0; pointer-events:none; }
+
+/* Floating gradient orbs */
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.45;
+  animation: orbFloat 8s ease-in-out infinite;
+}
+.orb-1 { width:520px; height:520px; background:radial-gradient(circle,#1d6ff5,transparent 70%); top:-120px; left:-100px; animation-duration:9s; }
+.orb-2 { width:400px; height:400px; background:radial-gradient(circle,#a855f7,transparent 70%); bottom:-80px; right:-80px; animation-duration:11s; animation-delay:-3s; }
+.orb-3 { width:300px; height:300px; background:radial-gradient(circle,#06b6d4,transparent 70%); top:40%; left:60%; animation-duration:7s; animation-delay:-5s; opacity:0.3; }
+.orb-4 { width:250px; height:250px; background:radial-gradient(circle,#ec4899,transparent 70%); bottom:20%; left:10%; animation-duration:10s; animation-delay:-2s; opacity:0.25; }
+
+@keyframes orbFloat {
+  0%,100% { transform: translateY(0px) scale(1); }
+  33%      { transform: translateY(-30px) scale(1.04); }
+  66%      { transform: translateY(20px) scale(0.97); }
+}
+
+/* Grid overlay */
+.auth-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(29,111,245,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(29,111,245,0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* Glass card */
+.auth-card {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 440px;
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 24px;
+  padding: 44px 40px;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.08);
+  animation: cardIn .5s cubic-bezier(.2,.8,.4,1) both;
+}
+@keyframes cardIn {
+  from { opacity:0; transform:translateY(28px) scale(0.97); }
+  to   { opacity:1; transform:translateY(0) scale(1); }
+}
+
+.auth-logo-wrap { display:flex; justify-content:center; margin-bottom:28px; }
+.auth-logo-wrap .noteiq-logo-name { font-size:26px; }
+
+.auth-title { font-size:26px; font-weight:700; color:#fff; text-align:center; margin-bottom:6px; letter-spacing:-.3px; }
+.auth-subtitle { text-align:center; color:rgba(255,255,255,0.45); font-size:14px; margin-bottom:32px; }
+
+.auth-form { display:flex; flex-direction:column; gap:18px; }
+
+.auth-field { display:flex; flex-direction:column; gap:7px; }
+.auth-field label { font-size:13px; font-weight:500; color:rgba(255,255,255,0.6); padding-left:2px; }
+
+.auth-input-wrap { position:relative; display:flex; align-items:center; }
+.auth-input-icon {
+  position: absolute;
+  left: 14px;
+  color: rgba(255,255,255,0.3);
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+  transition: color .2s;
+}
+.auth-input {
+  width: 100%;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+  padding: 13px 16px 13px 42px;
+  color: #fff;
+  font-size: 14px;
+  transition: border-color .2s, background .2s, box-shadow .2s;
+}
+.auth-input::placeholder { color:rgba(255,255,255,0.25); }
+.auth-input:focus {
+  border-color: rgba(29,111,245,0.7);
+  background: rgba(29,111,245,0.07);
+  box-shadow: 0 0 0 3px rgba(29,111,245,0.15);
+}
+.auth-input:focus + .auth-input-icon,
+.auth-input-wrap:focus-within .auth-input-icon { color: var(--accent2); }
+
+.auth-btn {
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #1d6ff5, #a855f7);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  margin-top: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: opacity .2s, transform .2s, box-shadow .2s;
+  box-shadow: 0 4px 20px rgba(29,111,245,0.35);
+  letter-spacing: .2px;
+}
+.auth-btn:hover:not(:disabled) { opacity:.9; transform:translateY(-1px); box-shadow:0 8px 28px rgba(29,111,245,0.45); }
+.auth-btn:active:not(:disabled) { transform:translateY(0); }
+.auth-btn:disabled { opacity:.55; cursor:not-allowed; }
+.auth-btn-arrow { font-size:17px; transition:transform .2s; }
+.auth-btn:hover .auth-btn-arrow { transform:translateX(4px); }
+.auth-btn-loading { display:flex; align-items:center; gap:8px; }
+
+.auth-divider { display:flex; align-items:center; gap:12px; margin:20px 0 0; color:rgba(255,255,255,0.2); font-size:12px; }
+.auth-divider::before, .auth-divider::after { content:""; flex:1; height:1px; background:rgba(255,255,255,0.08); }
+
+.auth-footer { text-align:center; margin-top:16px; font-size:14px; color:rgba(255,255,255,0.4); }
+.auth-footer a { color:var(--accent2); font-weight:600; }
+.auth-footer a:hover { color:#fff; text-decoration:none; }
 .auth-card h2 { font-size:24px; font-weight:700; margin-bottom:6px; text-align:center; color:var(--text); }
 .auth-card .subtitle { text-align:center; color:var(--text2); font-size:14px; margin-bottom:28px; }
 .form-group { margin-bottom:18px; }
@@ -293,8 +426,10 @@
   .source-card { min-width:130px; max-width:160px; }
 
   /* Auth */
-  .auth-card { padding:28px 20px; border-radius:16px; }
-  .auth-card h2 { font-size:20px; }
+  .auth-card { padding:32px 22px; border-radius:20px; }
+  .auth-title { font-size:22px; }
+  .orb-1 { width:320px; height:320px; }
+  .orb-2 { width:260px; height:260px; }
 
   /* Quick actions */
   .quick-actions-bar { padding:8px 12px; gap:6px; }
@@ -303,7 +438,8 @@
 
 /* ── Very small (≤ 400px) ────────────────────────────────────────────────────── */
 @media (max-width:400px) {
-  .auth-card { padding:24px 16px; }
+  .auth-card { padding:24px 16px; border-radius:16px; }
+  .auth-title { font-size:20px; }
   .noteiq-logo-name { font-size:20px; }
   .db3-page-title { font-size:16px; }
   .msg-v2-body { max-width:94%; }
