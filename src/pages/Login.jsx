@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { toast } from "../toast";
 import api from "../api";
 import { useAuth } from "../context/AuthContext";
+import Logo from "../components/Logo";
 
 export default function Login() {
   const { login } = useAuth();
@@ -28,10 +29,7 @@ export default function Login() {
   return (
     <div className="auth-page">
       <div className="auth-card">
-        <div className="auth-logo">
-          <div className="logo-icon">🧠</div>
-          <span>StudyMind</span>
-        </div>
+        <Logo size={44} showText={true} className="auth-logo-wrap" />
         <h2>Welcome back</h2>
         <p className="subtitle">Sign in to your account to continue</p>
 

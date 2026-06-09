@@ -4,12 +4,20 @@
 .spinner-sm { width:20px; height:20px; border:2px solid var(--border); border-top-color:var(--accent); border-radius:50%; animation:spin .7s linear infinite; }
 @keyframes spin { to { transform:rotate(360deg); } }
 
+/* ── NoteIQ Logo ─────────────────────────────────────────────────────────────── */
+.noteiq-logo { display:flex; align-items:center; gap:10px; }
+.noteiq-logo-icon { border-radius:11px; display:flex; align-items:center; justify-content:center; flex-shrink:0; box-shadow:0 0 18px rgba(29,111,245,0.55), 0 2px 8px rgba(0,0,0,0.4); transition:box-shadow .3s, transform .25s; cursor:pointer; }
+.noteiq-logo:hover .noteiq-logo-icon { box-shadow:0 0 32px rgba(168,85,247,0.7), 0 0 16px rgba(29,111,245,0.5); transform:scale(1.08) rotate(-3deg); }
+.noteiq-logo-name { font-size:22px; font-weight:400; letter-spacing:.5px; font-family:'Abril Fatface', serif; color:#ffffff; -webkit-font-smoothing:antialiased; }
+.noteiq-logo-sub { font-size:12px; color:var(--text2); margin-top:2px; }
+
+/* auth logo centering */
+.auth-logo-wrap { justify-content:center; margin-bottom:32px; }
+.auth-logo-wrap .noteiq-logo-name { font-size:24px; }
+
 /* ── Auth ───────────────────────────────────────────────────────────────────── */
 .auth-page { min-height:100vh; display:flex; align-items:center; justify-content:center; background:radial-gradient(ellipse at 50% 0%,rgba(29,111,245,.18) 0%,transparent 60%),var(--bg); padding:24px; }
 .auth-card { background:var(--bg2); border:1px solid var(--border); border-radius:20px; padding:44px 40px; width:100%; max-width:420px; box-shadow:0 24px 64px rgba(0,0,0,.6); }
-.auth-logo { display:flex; align-items:center; gap:10px; justify-content:center; margin-bottom:32px; }
-.auth-logo .logo-icon { width:40px; height:40px; background:linear-gradient(135deg,var(--accent),var(--accent2)); border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:20px; }
-.auth-logo span { font-size:22px; font-weight:700; letter-spacing:-.5px; }
 .auth-card h2 { font-size:24px; font-weight:700; margin-bottom:6px; text-align:center; color:var(--text); }
 .auth-card .subtitle { text-align:center; color:var(--text2); font-size:14px; margin-bottom:28px; }
 .form-group { margin-bottom:18px; }
@@ -30,11 +38,9 @@
 .db3-left { background:#00040e; border-right:1px solid var(--border); display:flex; flex-direction:column; padding:18px 12px 16px; overflow-y:auto; overflow-x:hidden; gap:0; }
 .db3-left::-webkit-scrollbar { width:4px; }
 
-.db3-logo { display:flex; align-items:center; gap:10px; padding:4px 6px 20px; border-bottom:1px solid var(--border); margin-bottom:16px; }
-.db3-logo-icon { width:38px; height:38px; background:linear-gradient(135deg,#1d6ff5,#60a5fa); border-radius:11px; display:flex; align-items:center; justify-content:center; flex-shrink:0; box-shadow:0 0 16px rgba(29,111,245,0.5), 0 2px 8px rgba(0,0,0,0.4); transition:box-shadow .3s; }
-.db3-logo:hover .db3-logo-icon { box-shadow:0 0 28px rgba(29,111,245,0.8), 0 2px 8px rgba(0,0,0,0.4); }
-.db3-logo-name { font-size:22px; font-weight:400; letter-spacing:.5px; font-family:'Abril Fatface', serif; color:#ffffff; -webkit-font-smoothing:antialiased; }
-.db3-logo-sub { font-size:12px; color:var(--text2); margin-top:2px; }
+.db3-logo { display:flex; align-items:center; justify-content:space-between; padding:4px 6px 20px; border-bottom:1px solid var(--border); margin-bottom:16px; }
+.mob-sidebar-close { display:none; background:transparent; border:none; color:var(--text2); font-size:16px; cursor:pointer; padding:4px 6px; border-radius:6px; transition:color .15s; }
+.mob-sidebar-close:hover { color:var(--text); }
 
 .new-chat-btn { display:flex; align-items:center; justify-content:center; gap:8px; width:100%; padding:12px; border-radius:10px; background:linear-gradient(135deg,#1d6ff5,#0ea5e9); color:#fff; font-size:16px; font-weight:400; font-family:'Abril Fatface', serif; border:none; cursor:pointer; margin-bottom:20px; transition:opacity .2s,transform .15s; letter-spacing:.3px; box-shadow:0 4px 14px rgba(29,111,245,0.35); }
 .new-chat-btn:hover { opacity:.9; transform:translateY(-1px); }
@@ -221,3 +227,84 @@
 .view-all-sources-btn:hover { background:rgba(29,111,245,.22); }
 
 .rp-empty { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:32px; text-align:center; }
+
+/* ── Mobile hamburger button (hidden on desktop) ─────────────────────────────── */
+.mob-menu-btn { display:none; align-items:center; justify-content:center; width:36px; height:36px; background:var(--bg2); border:1px solid var(--border); border-radius:9px; color:var(--text2); cursor:pointer; flex-shrink:0; transition:background .15s,color .15s; }
+.mob-menu-btn:hover { background:var(--bg3); color:var(--text); }
+.mob-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6); backdrop-filter:blur(2px); z-index:150; }
+
+/* ── Tablet (≤ 1100px): hide right panel ─────────────────────────────────────── */
+@media (max-width:1100px) {
+  .db3 { grid-template-columns:240px 1fr; }
+  .db3-right { display:none; }
+  .db3-page-title { font-size:22px; }
+  .msg-v2-body { max-width:82%; }
+}
+
+/* ── Small tablet (≤ 900px) ──────────────────────────────────────────────────── */
+@media (max-width:900px) {
+  .db3 { grid-template-columns:220px 1fr; }
+  .db3-topbar { padding:12px 16px; }
+  .chat-msgs-v2 { padding:16px; }
+  .chat-input-bar { padding:10px 16px; }
+  .chat-disclaimer { padding:4px 16px 8px; }
+  .auth-card { padding:36px 28px; }
+}
+
+/* ── Mobile (≤ 768px): sidebar as overlay ────────────────────────────────────── */
+@media (max-width:768px) {
+  .db3 { grid-template-columns:1fr; }
+
+  /* Sidebar slides in from left */
+  .db3-left {
+    position:fixed; left:0; top:0; bottom:0;
+    width:280px; z-index:200;
+    transform:translateX(-100%);
+    transition:transform .25s cubic-bezier(.4,0,.2,1);
+    box-shadow:none;
+  }
+  .db3-left.open {
+    transform:translateX(0);
+    box-shadow:8px 0 32px rgba(0,0,0,0.5);
+  }
+  .mob-sidebar-close { display:flex; }
+  .mob-menu-btn { display:flex; }
+  .mob-overlay { display:block; }
+
+  /* Topbar */
+  .db3-topbar { padding:10px 14px; }
+  .db3-page-title { font-size:18px; }
+  .db3-page-sub { font-size:12px; display:none; }
+  .doc-selector { max-width:150px; font-size:12px; }
+  .doc-selector > span:nth-child(2) { max-width:80px; }
+  .topbar-avatar { width:30px; height:30px; font-size:12px; }
+
+  /* Chat */
+  .chat-msgs-v2 { padding:12px; gap:12px; }
+  .msg-v2-body { max-width:88%; }
+  .msg-v2-bubble { padding:10px 14px; font-size:14px; }
+  .chat-input-bar { padding:8px 12px; gap:8px; }
+  .chat-input-v2 { font-size:14px; padding:10px 14px; min-height:44px; }
+  .send-btn-v2 { width:40px; height:40px; }
+  .input-icon-btn { width:34px; height:34px; }
+
+  /* Source cards */
+  .msg-sources-row { flex-wrap:nowrap; overflow-x:auto; padding-bottom:4px; }
+  .source-card { min-width:130px; max-width:160px; }
+
+  /* Auth */
+  .auth-card { padding:28px 20px; border-radius:16px; }
+  .auth-card h2 { font-size:20px; }
+
+  /* Quick actions */
+  .quick-actions-bar { padding:8px 12px; gap:6px; }
+  .quick-action-btn { padding:5px 10px; font-size:12px; }
+}
+
+/* ── Very small (≤ 400px) ────────────────────────────────────────────────────── */
+@media (max-width:400px) {
+  .auth-card { padding:24px 16px; }
+  .noteiq-logo-name { font-size:20px; }
+  .db3-page-title { font-size:16px; }
+  .msg-v2-body { max-width:94%; }
+}

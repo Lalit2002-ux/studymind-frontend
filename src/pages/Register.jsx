@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { toast } from "../toast";
 import api from "../api";
 import { useAuth } from "../context/AuthContext";
+import Logo from "../components/Logo";
 
 export default function Register() {
   const { login } = useAuth();
@@ -22,7 +23,7 @@ export default function Register() {
       await api.post("/auth/register", form);
       const { data } = await api.post("/auth/login", { email: form.email, password: form.password });
       login({ access_token: data.access_token, refresh_token: data.refresh_token }, data.user);
-      toast.success("Account created! Welcome to StudyMind 🎉");
+      toast.success("Account created! Welcome to NoteIQ 🎉");
     } catch (err) {
       toast.error(err.response?.data?.detail || "Registration failed");
     } finally {
@@ -33,10 +34,7 @@ export default function Register() {
   return (
     <div className="auth-page">
       <div className="auth-card">
-        <div className="auth-logo">
-          <div className="logo-icon">🧠</div>
-          <span>StudyMind</span>
-        </div>
+        <Logo size={44} showText={true} className="auth-logo-wrap" />
         <h2>Create account</h2>
         <p className="subtitle">Start learning smarter with AI</p>
 

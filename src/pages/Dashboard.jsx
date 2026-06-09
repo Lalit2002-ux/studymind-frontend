@@ -2,6 +2,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { toast } from "../toast";
 import api from "../api";
 import { useAuth } from "../context/AuthContext";
+import Logo from "../components/Logo";
 
 // ── Markdown renderer ──────────────────────────────────────────────────────────
 function MD({ text }) {
@@ -228,6 +229,8 @@ export default function Dashboard() {
   const [currentPageUrl, setCurrentPageUrl] = useState(null);
   const [showLightbox, setShowLightbox] = useState(false);
 
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
   const fileInput  = useRef(null);
   const msgsEnd    = useRef(null);
   const inputRef   = useRef(null);
@@ -411,20 +414,14 @@ export default function Dashboard() {
         <ImageLightbox src={currentPageUrl} onClose={() => setShowLightbox(false)} />
       )}
 
+      {/* Mobile overlay */}
+      {sidebarOpen && <div className="mob-overlay" onClick={() => setSidebarOpen(false)} />}
+
       {/* ── LEFT SIDEBAR ──────────────────────────────────────────────────────── */}
-      <aside className="db3-left">
+      <aside className={`db3-left ${sidebarOpen ? "open" : ""}`}>
         <div className="db3-logo">
-          <div className="db3-logo-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-              <path d="M12 2L2 7l10 5 10-5-10-5z" fill="white" opacity="0.9"/>
-              <path d="M2 17l10 5 10-5" stroke="white" strokeWidth="1.8" strokeLinecap="round" fill="none" opacity="0.7"/>
-              <path d="M2 12l10 5 10-5" stroke="white" strokeWidth="1.8" strokeLinecap="round" fill="none"/>
-            </svg>
-          </div>
-          <div>
-            <div className="db3-logo-name">StudyMind</div>
-            <div className="db3-logo-sub">AI Study Assistant</div>
-          </div>
+          <Logo size={38} showText={true} sub="AI Note Assistant" />
+          <button className="mob-sidebar-close" onClick={() => setSidebarOpen(false)} title="Close">✕</button>
         </div>
 
         <button className="new-chat-btn" onClick={handleNewChat}>
@@ -506,9 +503,16 @@ export default function Dashboard() {
       <div className="db3-center">
         {/* Topbar */}
         <div className="db3-topbar">
-          <div>
-            <div className="db3-page-title">StudyMind AI Assistant</div>
-            <div className="db3-page-sub">Ask questions, get answers, and learn from your documents</div>
+          <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+            <button className="mob-menu-btn" onClick={() => setSidebarOpen(true)} title="Open menu">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+              </svg>
+            </button>
+            <div>
+              <div className="db3-page-title">NoteIQ Assistant</div>
+              <div className="db3-page-sub">Ask questions, get answers, and learn from your documents</div>
+            </div>
           </div>
           <div className="db3-topbar-right">
             <div className="doc-selector" onClick={(e) => { e.stopPropagation(); setShowDocDD((v) => !v); }}>
@@ -620,7 +624,7 @@ export default function Dashboard() {
               <button className="send-btn-v2" onClick={() => sendQuestion()} disabled={aiLoading || !question.trim()}>➤</button>
             </div>
           </div>
-          <div className="chat-disclaimer">StudyMind AI can make mistakes. Please verify important information.</div>
+          <div className="chat-disclaimer">NoteIQ AI can make mistakes. Please verify important information.</div>
         </div>
       </div>
 
