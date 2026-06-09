@@ -517,16 +517,27 @@
 
 .rp-empty { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:32px; text-align:center; }
 
-/* ── Mobile hamburger button (hidden on desktop) ─────────────────────────────── */
-.mob-menu-btn { display:none; align-items:center; justify-content:center; width:36px; height:36px; background:var(--bg2); border:1px solid var(--border); border-radius:9px; color:var(--text2); cursor:pointer; flex-shrink:0; transition:background .15s,color .15s; }
+/* ── Mobile hamburger (hidden on desktop) ────────────────────────────────────── */
+.mob-menu-btn {
+  display: none;
+  align-items: center; justify-content: center;
+  width: 40px; height: 40px; min-width: 40px;
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: 10px; color: var(--text2); cursor: pointer;
+  flex-shrink: 0; transition: background .15s, color .15s;
+}
 .mob-menu-btn:hover { background:var(--bg3); color:var(--text); }
-.mob-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6); backdrop-filter:blur(2px); z-index:150; }
+.mob-overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(0,0,0,0.65); backdrop-filter: blur(3px);
+  z-index: 150;
+}
 
 /* ── Tablet (≤ 1100px): hide right panel ─────────────────────────────────────── */
 @media (max-width:1100px) {
   .db3 { grid-template-columns:240px 1fr; }
   .db3-right { display:none; }
-  .db3-page-title { font-size:22px; }
+  .db3-page-title { font-size:24px; }
   .msg-v2-body { max-width:82%; }
 }
 
@@ -534,69 +545,146 @@
 @media (max-width:900px) {
   .db3 { grid-template-columns:220px 1fr; }
   .db3-topbar { padding:12px 16px; }
-  .chat-msgs-v2 { padding:16px; }
+  .chat-msgs-v2 { padding:14px 16px; }
   .chat-input-bar { padding:10px 16px; }
   .chat-disclaimer { padding:4px 16px 8px; }
   .auth-card { padding:36px 28px; }
 }
 
-/* ── Mobile (≤ 768px): sidebar as overlay ────────────────────────────────────── */
+/* ════════════════════════════════════════════════════════════
+   MOBILE  ≤ 768px  (iPhone 14 = 390px, SE = 375px, etc.)
+   ════════════════════════════════════════════════════════════ */
 @media (max-width:768px) {
-  .db3 { grid-template-columns:1fr; }
 
-  /* Sidebar slides in from left */
+  /* Dashboard grid — single column, use dynamic viewport height */
+  .db3 {
+    grid-template-columns: 1fr;
+    height: 100dvh;
+    height: 100vh; /* fallback */
+    overflow: hidden;
+  }
+
+  /* ── Sidebar: full-height slide-in drawer ── */
   .db3-left {
-    position:fixed; left:0; top:0; bottom:0;
-    width:280px; z-index:200;
-    transform:translateX(-100%);
-    transition:transform .25s cubic-bezier(.4,0,.2,1);
-    box-shadow:none;
+    position: fixed; left: 0; top: 0; bottom: 0;
+    width: min(300px, 85vw);
+    z-index: 200;
+    transform: translateX(-100%);
+    transition: transform .28s cubic-bezier(.4,0,.2,1);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    box-shadow: none;
   }
   .db3-left.open {
-    transform:translateX(0);
-    box-shadow:8px 0 32px rgba(0,0,0,0.5);
+    transform: translateX(0);
+    box-shadow: 12px 0 40px rgba(0,0,0,0.6);
   }
-  .mob-sidebar-close { display:flex; }
-  .mob-menu-btn { display:flex; }
-  .mob-overlay { display:block; }
+  .mob-sidebar-close { display: flex; }
+  .mob-menu-btn    { display: flex; }
+  .mob-overlay     { display: block; }
 
-  /* Topbar */
-  .db3-topbar { padding:10px 14px; }
-  .db3-page-title { font-size:18px; }
-  .db3-page-sub { font-size:12px; display:none; }
-  .doc-selector { max-width:150px; font-size:12px; }
-  .doc-selector > span:nth-child(2) { max-width:80px; }
-  .topbar-avatar { width:30px; height:30px; font-size:12px; }
+  /* Show delete buttons always on touch (no hover on mobile) */
+  .chat-hist-del { opacity: 1 !important; }
+  .doc-item-del  { opacity: 1 !important; }
 
-  /* Chat */
-  .chat-msgs-v2 { padding:12px; gap:12px; }
-  .msg-v2-body { max-width:88%; }
-  .msg-v2-bubble { padding:10px 14px; font-size:14px; }
-  .chat-input-bar { padding:8px 12px; gap:8px; }
-  .chat-input-v2 { font-size:14px; padding:10px 14px; min-height:44px; }
-  .send-btn-v2 { width:40px; height:40px; }
-  .input-icon-btn { width:34px; height:34px; }
+  /* ── Topbar ── */
+  .db3-topbar {
+    padding: 10px 12px;
+    gap: 8px;
+    flex-wrap: nowrap;
+    min-height: 56px;
+  }
+  .db3-page-title { font-size: 17px; line-height: 1.2; }
+  .db3-page-sub   { display: none; }
 
-  /* Source cards */
-  .msg-sources-row { flex-wrap:nowrap; overflow-x:auto; padding-bottom:4px; }
-  .source-card { min-width:130px; max-width:160px; }
+  /* Hide doc selector from topbar — it lives in sidebar on mobile */
+  .doc-selector { display: none; }
+  .topbar-avatar { width: 34px; height: 34px; font-size: 13px; flex-shrink: 0; }
 
-  /* Auth */
-  .auth-card { padding:32px 22px; border-radius:20px; }
-  .auth-title { font-size:22px; }
-  .orb-1 { width:320px; height:320px; }
-  .orb-2 { width:260px; height:260px; }
+  /* ── Chat messages area ── */
+  .chat-area-v2 {
+    display: flex; flex-direction: column;
+    height: calc(100dvh - 56px);
+    overflow: hidden;
+  }
+  .chat-msgs-v2 {
+    flex: 1;
+    padding: 12px 10px;
+    gap: 10px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .msg-v2        { gap: 8px; }
+  .msg-v2-body   { max-width: 86%; }
+  .msg-v2-avatar { width: 30px; height: 30px; font-size: 13px; }
+  .msg-v2-bubble { padding: 10px 13px; font-size: 14px; line-height: 1.65; border-radius: 12px; }
 
-  /* Quick actions */
-  .quick-actions-bar { padding:8px 12px; gap:6px; }
-  .quick-action-btn { padding:5px 10px; font-size:12px; }
+  /* ── Source cards: horizontal scroll ── */
+  .msg-sources-row {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 4px;
+    gap: 8px;
+  }
+  .msg-sources-row::-webkit-scrollbar { display: none; }
+  .source-card { min-width: 140px; max-width: 160px; flex-shrink: 0; }
+
+  /* ── Quick actions: horizontal scroll ── */
+  .quick-actions-bar {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 8px 10px;
+    gap: 6px;
+  }
+  .quick-actions-bar::-webkit-scrollbar { display: none; }
+  .quick-action-btn { flex-shrink: 0; padding: 6px 12px; font-size: 12px; }
+
+  /* ── Input bar: safe area for iPhone home indicator ── */
+  .chat-input-bar {
+    padding: 8px 10px;
+    padding-bottom: max(8px, env(safe-area-inset-bottom, 8px));
+    gap: 8px;
+    flex-shrink: 0;
+  }
+  .chat-input-v2 {
+    font-size: 16px; /* prevents iOS zoom on focus */
+    padding: 10px 13px;
+    min-height: 44px;
+    border-radius: 10px;
+  }
+  .send-btn-v2   { width: 44px; height: 44px; flex-shrink: 0; }
+  .input-icon-btn { width: 44px; height: 44px; flex-shrink: 0; }
+  .chat-disclaimer { font-size: 11px; padding: 4px 10px 6px; }
+
+  /* ── Empty chat state ── */
+  .chat-empty-v2 { padding: 20px; }
+  .chat-empty-v2 > div:first-child { font-size: 40px; }
+
+  /* ── Auth pages ── */
+  .auth-card { padding: 28px 20px; border-radius: 20px; max-width: 100%; }
+  .auth-title { font-size: 22px; }
+  .orb-1 { width: 280px; height: 280px; }
+  .orb-2 { width: 220px; height: 220px; }
+  .orb-3, .orb-4 { display: none; }
+
+  /* ── Onboarding ── */
+  .ob-title { font-size: 28px; }
+  .ob-features { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .ob-card { padding: 16px 12px; }
+  .ob-start-btn { padding: 14px 28px; font-size: 15px; }
 }
 
-/* ── Very small (≤ 400px) ────────────────────────────────────────────────────── */
-@media (max-width:400px) {
-  .auth-card { padding:24px 16px; border-radius:16px; }
-  .auth-title { font-size:20px; }
-  .noteiq-logo-name { font-size:20px; }
-  .db3-page-title { font-size:16px; }
-  .msg-v2-body { max-width:94%; }
+/* ── iPhone SE / very small (≤ 390px) ───────────────────────────────────────── */
+@media (max-width:390px) {
+  .db3-page-title { font-size: 15px; }
+  .msg-v2-body   { max-width: 90%; }
+  .msg-v2-bubble { font-size: 13px; padding: 9px 11px; }
+  .auth-card     { padding: 24px 16px; border-radius: 16px; }
+  .auth-title    { font-size: 20px; }
+  .noteiq-logo-name { font-size: 20px; }
+  .ob-title      { font-size: 22px; }
+  .ob-features   { grid-template-columns: 1fr; }
+  .ob-start-btn  { padding: 13px 24px; font-size: 14px; width: 100%; justify-content: center; }
 }
