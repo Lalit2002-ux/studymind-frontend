@@ -34,12 +34,6 @@ const STEPS = [
   },
 ];
 
-const STATS = [
-  { icon: "👥", value: "50K+", label: "PDFs Processed" },
-  { icon: "🎓", value: "10K+", label: "Students Trust Us" },
-  { icon: "🛡️", value: "95%",  label: "Accuracy Rate" },
-  { icon: "🎧", value: "24/7", label: "AI Support" },
-];
 
 export default function Onboarding() {
   const navigate = useNavigate();
@@ -107,7 +101,7 @@ export default function Onboarding() {
 
           {/* CTA */}
           <button className="ob3-cta" onClick={handleStart}>
-            🚀 Let's get started
+             Let's get started
           </button>
 
           {/* Feature tabs */}
@@ -159,10 +153,6 @@ export default function Onboarding() {
               <span style={{ color: "#1d6ff5" }}>✓</span> Here's your answer with sources
             </div>
           </div>
-          <div className="ob3-float-card ob3-fc-source">
-            📄 <span>Source: <strong style={{ color: "#1d6ff5" }}>Page 12</strong></span>
-          </div>
-          <div className="ob3-fc-robot">🤖</div>
         </div>
 
       </div>
