@@ -25,13 +25,6 @@ const STEPS = [
     title: "See the source",
     desc: "Every answer includes exact page references so you can verify and explore deeper at any time.",
   },
-  {
-    icon: "⚡",
-    emoji: "⚡",
-    label: "Tools",
-    title: "Instant AI tools",
-    desc: "Generate summaries, study notes, quizzes, and key concepts from any document in seconds.",
-  },
 ];
 
 
@@ -124,17 +117,6 @@ export default function Onboarding() {
               <div className="ob3-step-title">{STEPS[active].title}</div>
               <div className="ob3-step-desc">{STEPS[active].desc}</div>
             </div>
-          </div>
-
-          {/* Stats */}
-          <div className="ob3-stats">
-            {STATS.map((s, i) => (
-              <div key={i} className="ob3-stat">
-                <span className="ob3-stat-icon">{s.icon}</span>
-                <div className="ob3-stat-value">{s.value}</div>
-                <div className="ob3-stat-label">{s.label}</div>
-              </div>
-            ))}
           </div>
 
           {/* Welcome */}
