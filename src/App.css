@@ -417,27 +417,115 @@ h1, h2, h3, h4, h5, h6, p, span, div, label, button, input, textarea, a {
 }
 
 /* ── Responsive ── */
+
+/* Large desktop: hide decorations at 1100px */
 @media (max-width: 1100px) {
   .ob3-layout { grid-template-columns: 0 1fr 0; }
   .ob3-deco-left, .ob3-deco-right { display: none; }
   .ob3-title { font-size: 42px; }
 }
+
+/* ── TABLET (≤ 768px) ── */
 @media (max-width: 768px) {
+  /* Allow page to scroll — remove fixed height */
+  .ob3-page {
+    height: auto;
+    min-height: 100vh;
+    min-height: 100dvh;
+    max-height: none;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .ob3-layout {
+    grid-template-columns: 1fr;
+    flex: unset;
+    overflow: visible;
+    padding: 0 20px 48px;
+    align-items: start;
+  }
+
+  .ob3-deco-left, .ob3-deco-right { display: none; }
+
   .ob3-nav { padding: 16px 20px; }
-  .ob3-title { font-size: 32px; }
-  .ob3-subtitle { font-size: 15px; }
-  .ob3-cta { padding: 13px 30px; font-size: 15px; }
-  .ob3-tabs { flex-wrap: nowrap; overflow-x: auto; border-radius: 14px; justify-content: flex-start; }
+
+  .ob3-center {
+    padding: 0;
+    gap: 0;
+  }
+
+  .ob3-badge { font-size: 10px; padding: 5px 12px; margin-bottom: 12px; }
+
+  .ob3-title { font-size: 34px; margin-bottom: 10px; }
+
+  .ob3-subtitle {
+    font-size: 14px;
+    margin-bottom: 18px;
+    max-width: 100%;
+  }
+
+  .ob3-cta {
+    width: 100%;
+    justify-content: center;
+    padding: 14px 20px;
+    font-size: 15px;
+    margin-bottom: 20px;
+  }
+
+  .ob3-tabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    justify-content: flex-start;
+    border-radius: 14px;
+    margin-bottom: 12px;
+  }
   .ob3-tabs::-webkit-scrollbar { display: none; }
   .ob3-tab { flex-shrink: 0; padding: 7px 14px; font-size: 12px; }
-  .ob3-stats { flex-wrap: wrap; }
-  .ob3-stat { min-width: 45%; }
-  .ob3-layout { padding: 0 12px 32px; }
+
+  .ob3-step-card {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 16px;
+    margin-bottom: 16px;
+  }
+  .ob3-step-icon { font-size: 28px; }
+  .ob3-step-title { font-size: 16px; }
+  .ob3-step-desc { font-size: 13px; }
+
+  .ob3-welcome { font-size: 13px; margin-top: 8px; }
 }
-@media (max-width: 400px) {
-  .ob3-title { font-size: 26px; }
-  .ob3-cta { width: 100%; justify-content: center; padding: 13px 20px; font-size: 14px; }
-  .ob3-step-card { flex-direction: column; gap: 8px; padding: 16px; }
+
+/* ── MOBILE (≤ 480px) — iPhone 14, SE, etc. ── */
+@media (max-width: 480px) {
+  .ob3-nav { padding: 14px 16px; }
+  .ob3-nav .noteiq-logo-name { font-size: 18px; }
+
+  .ob3-layout { padding: 0 16px 40px; }
+
+  .ob3-badge { font-size: 9px; padding: 4px 10px; letter-spacing: .5px; }
+
+  .ob3-title { font-size: 28px; letter-spacing: -.3px; }
+
+  .ob3-subtitle { font-size: 13px; line-height: 1.55; }
+
+  .ob3-cta { font-size: 14px; padding: 13px 16px; border-radius: 14px; }
+
+  .ob3-tabs { gap: 4px; padding: 4px; }
+  .ob3-tab { padding: 6px 12px; font-size: 11px; gap: 4px; }
+
+  .ob3-step-card { padding: 12px 14px; gap: 10px; }
+  .ob3-step-icon { font-size: 24px; }
+  .ob3-step-title { font-size: 15px; }
+  .ob3-step-desc { font-size: 12px; line-height: 1.55; }
+}
+
+/* ── VERY SMALL (≤ 360px) — Galaxy A series, small Androids ── */
+@media (max-width: 360px) {
+  .ob3-title { font-size: 24px; }
+  .ob3-tab { padding: 5px 10px; font-size: 10px; }
+  .ob3-cta { font-size: 13px; }
 }
 
 /* ══════════════════════════════════════════════════════════
