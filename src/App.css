@@ -8,7 +8,7 @@
 .noteiq-logo { display:flex; align-items:center; gap:10px; }
 .noteiq-logo-icon { border-radius:11px; display:flex; align-items:center; justify-content:center; flex-shrink:0; box-shadow:0 0 18px rgba(29,111,245,0.55), 0 2px 8px rgba(0,0,0,0.4); transition:box-shadow .3s, transform .25s; cursor:pointer; }
 .noteiq-logo:hover .noteiq-logo-icon { box-shadow:0 0 32px rgba(168,85,247,0.7), 0 0 16px rgba(29,111,245,0.5); transform:scale(1.08) rotate(-3deg); }
-.noteiq-logo-name { font-size:22px; font-weight:400; letter-spacing:.5px; font-family:'Abril Fatface', serif; color:#ffffff; -webkit-font-smoothing:antialiased; }
+.noteiq-logo-name { font-size:22px; font-weight:400; letter-spacing:.5px; font-family:'DM Serif Display', serif; color:#ffffff; -webkit-font-smoothing:antialiased; }
 .noteiq-logo-sub { font-size:12px; color:var(--text2); margin-top:2px; }
 
 /* auth logo centering */
@@ -83,7 +83,7 @@
 .auth-logo-wrap .noteiq-logo-name { font-size:26px; color:#0f1f3d; }
 .auth-logo-wrap .noteiq-logo-sub { color:#5a6a85; }
 
-.auth-title { font-size:26px; font-weight:700; color:#0f1f3d; text-align:center; margin-bottom:6px; letter-spacing:-.3px; }
+.auth-title { font-size:28px; font-weight:400; color:#0f1f3d; text-align:center; margin-bottom:6px; letter-spacing:-.2px; font-family:'DM Serif Display', serif; }
 .auth-subtitle { text-align:center; color:#5a6a85; font-size:14px; margin-bottom:32px; }
 
 .auth-form { display:flex; flex-direction:column; gap:18px; }
@@ -150,7 +150,7 @@
 .auth-footer { text-align:center; margin-top:16px; font-size:14px; color:#5a6a85; }
 .auth-footer a { color:#1d6ff5; font-weight:600; }
 .auth-footer a:hover { color:#7c3aed; text-decoration:none; }
-.auth-card h2 { font-size:24px; font-weight:700; margin-bottom:6px; text-align:center; color:#0f1f3d; }
+.auth-card h2 { font-size:26px; font-weight:400; margin-bottom:6px; text-align:center; color:#0f1f3d; font-family:'DM Serif Display', serif; }
 .auth-card .subtitle { text-align:center; color:#5a6a85; font-size:14px; margin-bottom:28px; }
 .form-group { margin-bottom:18px; }
 .form-group label { display:block; font-size:13px; font-weight:500; color:var(--text2); margin-bottom:7px; }
@@ -239,8 +239,9 @@
 }
 
 .ob3-title {
-  font-size: 44px; font-weight: 800; line-height: 1.15;
-  color: #0f1f3d; letter-spacing: -.8px; margin-bottom: 12px;
+  font-size: 44px; font-weight: 400; line-height: 1.15;
+  color: #0f1f3d; letter-spacing: -.5px; margin-bottom: 12px;
+  font-family: 'DM Serif Display', serif;
   animation: cardIn .4s .1s ease both;
 }
 .ob3-title-grad {
@@ -305,7 +306,7 @@
   margin-bottom: 16px;
 }
 .ob3-step-icon { font-size: 38px; flex-shrink: 0; }
-.ob3-step-title { font-size: 17px; font-weight: 800; color: #0f1f3d; margin-bottom: 6px; text-align: left; }
+.ob3-step-title { font-size: 18px; font-weight: 400; color: #0f1f3d; margin-bottom: 6px; text-align: left; font-family: 'DM Serif Display', serif; }
 .ob3-step-desc  { font-size: 14px; color: #5a6a85; line-height: 1.6; text-align: left; }
 
 /* Stats row */
@@ -629,7 +630,7 @@
 }
 .db3-page-title {
   font-size: 26px; font-weight: 400; margin: 0;
-  font-family: 'Abril Fatface', serif;
+  font-family: 'DM Serif Display', serif;
   background: linear-gradient(135deg, #1d6ff5 0%, #7c3aed 100%);
   -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
   -webkit-font-smoothing: antialiased;
@@ -1084,4 +1085,46 @@
   .ob-title      { font-size: 22px; }
   .ob-features   { grid-template-columns: 1fr; }
   .ob-start-btn  { padding: 13px 24px; font-size: 14px; width: 100%; justify-content: center; }
+}
+
+/* ════════════════════════════════════════════════════════════
+   TABLET  480px – 768px  (iPad mini, Galaxy Tab small)
+   ════════════════════════════════════════════════════════════ */
+@media (min-width: 481px) and (max-width: 768px) {
+  .auth-page { padding: 32px 24px; }
+  .auth-card { max-width: 440px; padding: 40px 32px; border-radius: 22px; }
+  .auth-title { font-size: 24px; }
+  .ob3-title { font-size: 36px; }
+  .ob3-subtitle { font-size: 16px; }
+  .ob3-cta { padding: 14px 36px; font-size: 16px; }
+}
+
+/* ════════════════════════════════════════════════════════════
+   LARGE TABLET  769px – 1024px  (iPad, Galaxy Tab)
+   ════════════════════════════════════════════════════════════ */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .db3 { grid-template-columns: 240px 1fr; }
+  .db3-right { display: none; }
+  .auth-card { max-width: 460px; }
+  .ob3-layout { grid-template-columns: 0 1fr 0; }
+  .ob3-deco-left, .ob3-deco-right { display: none; }
+  .ob3-title { font-size: 40px; }
+}
+
+/* ════════════════════════════════════════════════════════════
+   UPLOAD ICON BUTTON
+   ════════════════════════════════════════════════════════════ */
+.upload-icon-btn {
+  width: 46px !important; height: 46px !important;
+  padding: 0 !important;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 12px !important;
+  background: #f0f4ff !important;
+  border: 1.5px solid #dce6f5 !important;
+  transition: background .2s, border-color .2s, transform .2s !important;
+}
+.upload-icon-btn:hover {
+  background: #e6eeff !important;
+  border-color: #1d6ff5 !important;
+  transform: translateY(-1px) !important;
 }

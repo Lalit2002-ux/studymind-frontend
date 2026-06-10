@@ -543,7 +543,7 @@ export default function Dashboard() {
           <div className="chat-msgs-v2">
             {messages.length === 0 && !aiLoading && (
               <div className="chat-empty-v2">
-                <div style={{ fontSize: 52, marginBottom: 14 }}>🤖</div>
+                
                 <div style={{ fontSize: 22, fontWeight: 400, marginBottom: 8, fontFamily: "'Abril Fatface', serif", color: "#0f1f3d" }}>Ready to help you study!</div>
                 <div style={{ color: "#a0b8d0", fontSize: 15, fontFamily: "'Inter', system-ui, sans-serif" }}>
                   {docs.length === 0 ? "Upload a PDF to get started" : `You have ${docs.length} document${docs.length > 1 ? "s" : ""} — ask me anything!`}
@@ -620,7 +620,17 @@ export default function Dashboard() {
               rows={1}
             />
             <div className="chat-input-actions">
-              <button className="input-icon-btn" onClick={() => fileInput.current?.click()} title="Attach PDF">📎</button>
+              <button className="input-icon-btn upload-icon-btn" onClick={() => fileInput.current?.click()} title="Attach PDF">
+                <svg width="22" height="22" viewBox="0 0 56 56" fill="none">
+                  <rect x="6" y="2" width="34" height="42" rx="4" fill="#00BFEA"/>
+                  <path d="M32 2l8 8h-6a2 2 0 01-2-2V2z" fill="#00D4F5"/>
+                  <rect x="13" y="18" width="18" height="3" rx="1.5" fill="#0a2540" opacity="0.7"/>
+                  <rect x="13" y="25" width="14" height="3" rx="1.5" fill="#0a2540" opacity="0.7"/>
+                  <rect x="13" y="32" width="10" height="3" rx="1.5" fill="#0a2540" opacity="0.7"/>
+                  <circle cx="38" cy="40" r="14" fill="#FBBF24"/>
+                  <path d="M38 34v12M33 39l5-5 5 5" stroke="#1e3a5f" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </button>
               <button className="send-btn-v2" onClick={() => sendQuestion()} disabled={aiLoading || !question.trim()}>➤</button>
             </div>
           </div>
