@@ -230,6 +230,7 @@ export default function Dashboard() {
   const [showLightbox, setShowLightbox] = useState(false);
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [previewOpen, setPreviewOpen] = useState(false);
 
   const fileInput  = useRef(null);
   const msgsEnd    = useRef(null);
@@ -529,10 +530,14 @@ export default function Dashboard() {
                       📄 {d.filename}
                     </div>
                   ))}
-                  {docs.length === 0 && <div className="doc-dd-item" style={{ color: "var(--text2)" }}>No documents uploaded</div>}
+                  {docs.length === 0 && <div className="doc-dd-item" style={{ color: "#5a6a85" }}>No documents uploaded</div>}
                 </div>
               )}
             </div>
+            {/* Mobile preview button */}
+            <button className="mob-preview-btn" onClick={() => setPreviewOpen(true)} title="Document Preview">
+              📖
+            </button>
             <div className="topbar-avatar">{user?.name?.[0]?.toUpperCase()}</div>
           </div>
         </div>
@@ -543,9 +548,9 @@ export default function Dashboard() {
           <div className="chat-msgs-v2">
             {messages.length === 0 && !aiLoading && (
               <div className="chat-empty-v2">
-                
-                <div style={{ fontSize: 22, fontWeight: 400, marginBottom: 8, fontFamily: "'Abril Fatface', serif", color: "#0f1f3d" }}>Ready to help you study!</div>
-                <div style={{ color: "#a0b8d0", fontSize: 15, fontFamily: "'Inter', system-ui, sans-serif" }}>
+                <div className="chat-empty-icon">🤖</div>
+                <div className="chat-empty-title">Ready to help you study!</div>
+                <div className="chat-empty-sub">
                   {docs.length === 0 ? "Upload a PDF to get started" : `You have ${docs.length} document${docs.length > 1 ? "s" : ""} — ask me anything!`}
                 </div>
               </div>
@@ -637,6 +642,82 @@ export default function Dashboard() {
           <div className="chat-disclaimer">NoteIQ AI can make mistakes. Please verify important information.</div>
         </div>
       </div>
+
+      {/* ── MOBILE PREVIEW SHEET ─────────────────────────────────────────────── */}
+      {previewOpen && (
+        <div className="mob-preview-overlay" onClick={() => setPreviewOpen(false)}>
+          <div className="mob-preview-sheet" onClick={(e) => e.stopPropagation()}>
+            <div className="mob-preview-sheet-header">
+              <span className="rp-title">Document Preview</span>
+              <button className="mob-preview-close" onClick={() => setPreviewOpen(false)}>✕</button>
+            </div>
+            <div className="mob-preview-body">
+              {preview.docId ? (
+                <>
+                  <div className="rp-doc-info">
+                    <div className="rp-doc-icon">📄</div>
+                    <div>
+                      <div className="rp-doc-name">{preview.filename}</div>
+                      <div className="rp-doc-page">Page {preview.page} of {preview.docPageCount}</div>
+                    </div>
+                  </div>
+                  <div className="rp-page-wrap"
+                    onClick={() => currentPageUrl && setShowLightbox(true)}
+                    style={{ cursor: currentPageUrl ? "zoom-in" : "default" }}
+                  >
+                    <PageImage
+                      documentId={preview.docId}
+                      pageNum={preview.page}
+                      onImageReady={(url) => setCurrentPageUrl(url)}
+                    />
+                  </div>
+                  <div className="rp-page-nav">
+                    <button className="rp-nav-btn"
+                      disabled={preview.page <= 1}
+                      onClick={() => setPreview((p) => ({ ...p, page: Math.max(1, p.page - 1) }))}>
+                      ‹ Prev
+                    </button>
+                    <span className="rp-page-label">Page {preview.page}</span>
+                    <button className="rp-nav-btn"
+                      disabled={preview.page >= preview.docPageCount}
+                      onClick={() => setPreview((p) => ({ ...p, page: Math.min(p.docPageCount, p.page + 1) }))}>
+                      Next ›
+                    </button>
+                  </div>
+                  {currentSources.length > 0 && (
+                    <div>
+                      <div className="rp-sources-title">AI Sources</div>
+                      {currentSources.map((src, i) => (
+                        <div key={i}
+                          className={`rp-source-item ${preview.docId === src.document_id && preview.page === src.page ? "active" : ""}`}
+                          onClick={() => { activateSource(src); setPreviewOpen(false); }}
+                        >
+                          <div className="rp-source-left">
+                            <div className="rp-source-doc-icon">📄</div>
+                            <div>
+                              <div className="rp-source-name">{src.filename}</div>
+                              <div className="rp-source-pg">Page {src.page || 1}</div>
+                            </div>
+                          </div>
+                          <div className="rp-source-badge">Used</div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </>
+              ) : (
+                <div className="rp-empty">
+                  <div style={{ fontSize: 44, marginBottom: 14 }}>📖</div>
+                  <div style={{ fontSize: 14, fontWeight: 700, color: "#0f1f3d", marginBottom: 8 }}>Document Preview</div>
+                  <div style={{ fontSize: 12, color: "#5a6a85", lineHeight: 1.6 }}>
+                    Ask a question to see relevant PDF pages here
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* ── RIGHT PANEL ───────────────────────────────────────────────────────── */}
       <div className="db3-right">
