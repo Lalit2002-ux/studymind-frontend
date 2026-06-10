@@ -58,7 +58,7 @@ function PageImage({ documentId, pageNum, onImageReady }) {
   if (!url) return (
     <div className="rp-page-placeholder" style={{ flexDirection: "column", gap: 8, padding: 16, textAlign: "center" }}>
       <div style={{ fontSize: 28 }}>📂</div>
-      <div style={{ fontSize: 13, color: "#fff", fontWeight: 600 }}>PDF file missing</div>
+      <div style={{ fontSize: 13, color: "#0f1f3d", fontWeight: 600 }}>PDF file missing</div>
       <div style={{ fontSize: 12, color: "#a0b8d0", lineHeight: 1.5 }}>The original file was deleted.<br/>Re-upload the PDF to restore preview.</div>
     </div>
   );
@@ -544,7 +544,7 @@ export default function Dashboard() {
             {messages.length === 0 && !aiLoading && (
               <div className="chat-empty-v2">
                 <div style={{ fontSize: 52, marginBottom: 14 }}>🤖</div>
-                <div style={{ fontSize: 22, fontWeight: 400, marginBottom: 8, fontFamily: "'Abril Fatface', serif", color: "#fff" }}>Ready to help you study!</div>
+                <div style={{ fontSize: 22, fontWeight: 400, marginBottom: 8, fontFamily: "'Abril Fatface', serif", color: "#0f1f3d" }}>Ready to help you study!</div>
                 <div style={{ color: "#a0b8d0", fontSize: 15, fontFamily: "'Inter', system-ui, sans-serif" }}>
                   {docs.length === 0 ? "Upload a PDF to get started" : `You have ${docs.length} document${docs.length > 1 ? "s" : ""} — ask me anything!`}
                 </div>
