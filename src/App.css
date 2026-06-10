@@ -1,4 +1,23 @@
 /* ── Base ───────────────────────────────────────────────────────────────────── */
+
+/* Global text sharpness */
+h1, h2, h3, h4, h5, h6, p, span, div, label, button, input, textarea, a {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* DM Serif Display — force crisp render */
+.noteiq-logo-name,
+.auth-title, .auth-card h2,
+.ob3-title, .ob3-step-title,
+.db3-page-title {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: geometricPrecision;
+  transform: translateZ(0);
+}
+
 .center-screen { min-height:100vh; display:flex; align-items:center; justify-content:center; }
 .spinner { width:36px; height:36px; border:3px solid var(--border); border-top-color:var(--accent); border-radius:50%; animation:spin .7s linear infinite; }
 .spinner-sm { width:20px; height:20px; border:2px solid var(--border); border-top-color:var(--accent); border-radius:50%; animation:spin .7s linear infinite; }
@@ -65,18 +84,16 @@
   z-index: 1;
   width: 100%;
   max-width: 440px;
-  background: rgba(255,255,255,0.75);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(255,255,255,0.9);
+  background: #ffffff;
+  border: 1px solid #e8eef8;
   border-radius: 24px;
   padding: 44px 40px;
   box-shadow: 0 20px 60px rgba(29,111,245,0.12), 0 4px 24px rgba(0,0,0,0.06);
   animation: cardIn .5s cubic-bezier(.2,.8,.4,1) both;
 }
 @keyframes cardIn {
-  from { opacity:0; transform:translateY(28px) scale(0.97); }
-  to   { opacity:1; transform:translateY(0) scale(1); }
+  from { opacity:0; transform:translateY(20px); }
+  to   { opacity:1; transform:translateY(0); }
 }
 
 .auth-logo-wrap { display:flex; justify-content:center; margin-bottom:28px; }
@@ -624,8 +641,7 @@
   display: flex; align-items: center; justify-content: space-between;
   padding: 13px 22px;
   border-bottom: 1px solid #dce6f5;
-  background: rgba(255,255,255,0.9);
-  backdrop-filter: blur(16px);
+  background: #ffffff;
   flex-shrink: 0; position: relative; z-index: 10;
 }
 .db3-page-title {
@@ -642,7 +658,7 @@
 .doc-selector {
   position: relative; display: flex; align-items: center; gap: 7px;
   padding: 7px 13px;
-  background: #fff;
+  background: #f0f4ff;
   border: 1.5px solid #dce6f5;
   border-radius: 10px; cursor: pointer; font-size: 13px; font-weight: 500; color: #0f1f3d;
   max-width: 200px; user-select: none;
@@ -654,7 +670,7 @@
 
 .doc-dropdown {
   position: absolute; top: calc(100% + 6px); left: 0; right: 0;
-  background: #fff; backdrop-filter: blur(16px);
+  background: #fff;
   border: 1px solid #dce6f5;
   border-radius: 12px; box-shadow: 0 16px 40px rgba(29,111,245,0.12); z-index: 100; overflow: hidden; min-width: 220px;
 }
@@ -757,7 +773,7 @@
   display: flex; gap: 7px; padding: 9px 22px;
   flex-wrap: wrap; flex-shrink: 0;
   border-top: 1px solid #dce6f5;
-  background: rgba(255,255,255,0.85); backdrop-filter: blur(8px);
+  background: #ffffff;
 }
 .quick-action-btn {
   padding: 6px 13px; border-radius: 20px; font-size: 12px; font-weight: 500;
@@ -777,7 +793,7 @@
   padding: 12px 22px;
   border-top: 1px solid #dce6f5;
   flex-shrink: 0;
-  background: rgba(255,255,255,0.9); backdrop-filter: blur(16px);
+  background: #ffffff;
 }
 .chat-input-v2 {
   flex: 1;
@@ -836,7 +852,7 @@
 .rp-header {
   display: flex; align-items: center; justify-content: space-between;
   padding: 14px 16px; border-bottom: 1px solid #dce6f5; flex-shrink: 0;
-  background: rgba(255,255,255,0.95);
+  background: #ffffff;
 }
 .rp-title {
   font-size: 13px; font-weight: 700; letter-spacing: .3px;
